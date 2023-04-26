@@ -1,147 +1,69 @@
 import React from 'react';
-import {Text, View, TextInput, TouchableOpacity, Image} from 'react-native';
+import {View, TouchableOpacity, Text, ScrollView} from 'react-native';
+import UserDetails from '../../controls/UserDetails';
 
 class HomeScreen extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      firstName: '',
-      lastName: '',
-      gender: '',
-      age: '',
-      dob: '',
-      contactNumber: '',
-      homePhone: '',
-      education: '',
-      degree: '',
+      user: {
+        firstName: 'Firdous',
+        lastName: 'Ali',
+        gender: 'Male',
+        age: '30',
+        dob: '1/1/80',
+        contactNumber: '+44444444',
+        homePhone: '+55555555',
+        education: 'MS',
+        degree: 'CIS',
+      },
     };
   }
 
-  //personal details
-  //contact details
-  //educational details
-
-  renderPersonalFields = () => {
-    const {firstName, lastName, gender, age, dob} = this.state;
-
-    return (
-      <>
-        <TextInput
-          style={{backgroundColor: 'white', height: 45}}
-          onChangeText={changedText => {
-            this.setState({firstName: changedText});
-          }}
-          value={firstName}
-          placeholder="First Name"
-        />
-        <TextInput
-          style={{backgroundColor: 'white', height: 45}}
-          onChangeText={changedText => {
-            this.setState({lastName: changedText});
-          }}
-          value={lastName}
-          placeholder="Last Name"
-        />
-        <TextInput
-          style={{backgroundColor: 'white', height: 45}}
-          onChangeText={changedText => {
-            this.setState({gender: changedText});
-          }}
-          value={gender}
-          placeholder="Gender"
-        />
-
-        <TextInput
-          style={{backgroundColor: 'white', height: 45}}
-          onChangeText={changedText => {
-            this.setState({dob: changedText});
-          }}
-          value={dob}
-          placeholder="Date of Birth"
-        />
-
-        <TextInput
-          style={{backgroundColor: 'white', height: 45}}
-          onChangeText={changedText => {
-            this.setState({age: changedText});
-          }}
-          value={age}
-          placeholder="Age"
-        />
-      </>
-    );
-  };
-
-  renderContactFields = () => {
-    const {contactNumber, homePhone} = this.state;
-
-    return (
-      <>
-        <TextInput
-          style={{backgroundColor: 'white', height: 45}}
-          onChangeText={changedText => {
-            this.setState({contactNumber: changedText});
-          }}
-          value={contactNumber}
-          placeholder="Contact Number"
-        />
-
-        <TextInput
-          style={{backgroundColor: 'white', height: 45}}
-          onChangeText={changedText => {
-            this.setState({homePhone: changedText});
-          }}
-          value={homePhone}
-          placeholder="Home Number"
-        />
-      </>
-    );
-  };
-
-  renderEducationalFields = () => {
-    const {education, degree} = this.state;
-
-    return (
-      <>
-        <TextInput
-          style={{backgroundColor: 'white', height: 45}}
-          onChangeText={changedText => {
-            this.setState({education: changedText});
-          }}
-          value={education}
-          placeholder="Education"
-        />
-
-        <TextInput
-          style={{backgroundColor: 'white', height: 45}}
-          onChangeText={changedText => {
-            this.setState({degree: changedText});
-          }}
-          value={degree}
-          placeholder="Name of Degree"
-        />
-      </>
-    );
-  };
-
   render() {
+    const {user} = this.state;
+
     return (
       <View style={{flex: 1, backgroundColor: 'yellow'}}>
-        {this.renderPersonalFields()}
-        {this.renderContactFields()}
-        {this.renderEducationalFields()}
+        <ScrollView>
+          <UserDetails user={user} />
 
-        <TouchableOpacity
-          onPress={() => {
-            this.setState({firstName: 'sfskdfjkh', lastName: 'sdfsdsdf'});
-          }}>
-          <Text>Submit button</Text>
-        </TouchableOpacity>
+          <TouchableOpacity
+            style={{
+              backgroundColor: 'red',
+              height: 44,
+              margin: 15,
+              justifyContent: 'center',
+              alignItems: 'center',
+              flexDirection: 'row',
+            }}
+            onPress={() => {
+              this.setState({
+                user: {
+                  firstName: 'Firdous2',
+                  lastName: 'Ali2',
+                  gender: 'Male2',
+                  age: '302',
+                  dob: '1/1/802',
+                  contactNumber: '+444444442',
+                  homePhone: '+555555552',
+                  education: 'MS2',
+                  degree: 'CIS2',
+                },
+              });
+            }}>
+            <Text>Change text</Text>
+            <Text>Press Button</Text>
+          </TouchableOpacity>
 
-        <Text>
-          {this.state.firstName} {this.state.lastName}
-        </Text>
+          <TouchableOpacity
+            onPress={() => {
+              this.props.navigation.navigate('flexTestView');
+            }}>
+            <Text>Goto flex test</Text>
+          </TouchableOpacity>
+        </ScrollView>
       </View>
     );
   }
