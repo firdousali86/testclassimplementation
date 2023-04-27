@@ -13,6 +13,8 @@ import styles from './styles';
 const windowWidth = Dimensions.get('window').width;
 
 const MyList = props => {
+  console.log(props.route.params);
+
   const [listData, setListData] = useState([
     {name: 'Edward', language: 'English', place: 'UK'},
     {name: 'Victor', language: 'Ukranian', place: 'Scotland'},
