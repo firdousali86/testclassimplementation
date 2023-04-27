@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   View,
   FlatList,
@@ -7,13 +7,23 @@ import {
   Dimensions,
   TextInput,
   Button,
+  Modal,
 } from 'react-native';
 import styles from './styles';
 
 const windowWidth = Dimensions.get('window').width;
 
 const MyList = props => {
-  console.log(props.route.params);
+  useEffect(() => {
+    //it will run whenever there is a change in props
+    if (props?.route?.params?.owner) {
+      setJumpText(props?.route?.params?.owner);
+    }
+  }, [props]);
+
+  //whenever any thing within the props changes, just let me know in the callback
+
+  // console.log(props.route.params);
 
   const [listData, setListData] = useState([
     {name: 'Edward', language: 'English', place: 'UK'},
@@ -25,6 +35,10 @@ const MyList = props => {
   const [userName, setUserName] = useState('');
   const [userLanguage, setUserLanguage] = useState('');
   const [userPlace, setUserPlace] = useState('');
+
+  const [jumpText, setJumpText] = useState('');
+
+  const [modalVisible, setModalVisible] = useState(false);
 
   const renderCellItem = ({item, index}) => {
     return (
@@ -106,8 +120,32 @@ const MyList = props => {
     );
   };
 
-  return (
-    <View style={{flex: 1, backgroundColor: '#F5F2F2'}}>
+  const renderModal = () => {
+    return (
+      <Modal
+        animationType="fade"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          // Alert.alert('Modal has been closed.');
+          setModalVisible(!modalVisible);
+        }}>
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <Text style={styles.modalText}>Hello World!</Text>
+            <TouchableOpacity
+              style={[styles.button, styles.buttonClose]}
+              onPress={() => setModalVisible(!modalVisible)}>
+              <Text style={styles.textStyle}>Hide Modal</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
+    );
+  };
+
+  const renderFlatlist = () => {
+    return (
       <FlatList
         data={listData}
         renderItem={renderCellItem}
@@ -118,7 +156,24 @@ const MyList = props => {
         ListHeaderComponent={renderHeaderFooter}
         ListFooterComponent={renderHeaderFooter}
       />
+    );
+  };
+
+  return (
+    <View style={{flex: 1, backgroundColor: '#F5F2F2'}}>
       {userInputView()}
+      {renderFlatlist()}
+
+      <Text>{jumpText}</Text>
+
+      <TouchableOpacity
+        onPress={() => {
+          setModalVisible(true);
+        }}>
+        <Text>Show Modal</Text>
+      </TouchableOpacity>
+
+      {renderModal()}
     </View>
   );
 };
