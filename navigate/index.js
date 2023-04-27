@@ -1,7 +1,6 @@
-import HomeScreen from '../containers/HomeScreen';
+import {HomeScreen, MyList, ListItemDetails} from '../containers';
+
 import UserDetailsFunt from '../controls/UserDetailsFunt';
-import MyList from '../containers/MyList';
-import ListItemDetails from '../containers/ListItemDetails';
 
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
