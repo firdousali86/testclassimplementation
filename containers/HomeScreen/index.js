@@ -1,9 +1,17 @@
 import React from 'react';
-import {View, TouchableOpacity, Text, ScrollView} from 'react-native';
+import {
+  View,
+  TouchableOpacity,
+  Text,
+  ScrollView,
+  TextInput,
+} from 'react-native';
 import UserDetails from '../../controls/UserDetails';
-
+import _ from 'lodash';
 class HomeScreen extends React.Component {
   constructor(props) {
+    console.log('homescreen > constructor');
+
     super(props);
 
     this.state = {
@@ -18,10 +26,17 @@ class HomeScreen extends React.Component {
         education: 'MS',
         degree: 'CIS',
       },
+      sampleTextinput: '',
     };
   }
 
+  // componentDidMount() {
+  //   console.log('homescreen > componentdidmount');
+  // }
+
   render() {
+    console.log('homescreen > render');
+
     const {user} = this.state;
 
     return (
@@ -33,10 +48,9 @@ class HomeScreen extends React.Component {
             style={{
               backgroundColor: 'red',
               height: 44,
-              margin: 15,
+
               justifyContent: 'center',
               alignItems: 'center',
-              flexDirection: 'row',
             }}
             onPress={() => {
               this.setState({
@@ -54,15 +68,20 @@ class HomeScreen extends React.Component {
               });
             }}>
             <Text>Change text</Text>
-            <Text>Press Button</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity
-            onPress={() => {
-              this.props.navigation.navigate('flexTestView');
-            }}>
-            <Text>Goto flex test</Text>
-          </TouchableOpacity>
+          <TextInput
+            style={{
+              margin: 20,
+              backgroundColor: 'white',
+              height: 40,
+            }}
+            onChangeText={changedText => {
+              this.setState({sampleTextinput: changedText});
+            }}
+            value={this.state.sampleTextinput}
+            placeholder="Some textinput on homescreen"
+          />
         </ScrollView>
       </View>
     );

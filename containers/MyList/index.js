@@ -105,15 +105,15 @@ const MyList = props => {
     );
   };
 
+  const onFormSubmit = userObject => {
+    //soo n so
+
+    setListData([...listData, userObject]);
+  };
+
   return (
     <View style={{flex: 1, backgroundColor: '#F5F2F2'}}>
-      <UserForm
-        onFormSubmit={userObject => {
-          //soo n so
-
-          setListData([...listData, userObject]);
-        }}
-      />
+      <UserForm onFormSubmit={onFormSubmit} />
 
       {renderFlatlist()}
 

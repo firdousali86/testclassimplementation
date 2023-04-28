@@ -84,51 +84,55 @@ const Navigation = props => {
     );
   };
 
-  //   const getHomeStack = () => {
-  //     return (
-  //       <Stack.Group>
-  //         <Stack.Screen
-  //           name="myList"
-  //           component={MyList}
-  //           initialParams={{name: 'Victor'}}
-  //         />
-  //         <Stack.Screen name="listItemDetails" component={ListItemDetails} />
-  //         <Stack.Screen name="My Home" component={HomeScreen} />
-  //       </Stack.Group>
-  //     );
-  //   };
-
-  const getTabNavigator = () => {
+  const getHomeStack = () => {
     return (
-      <Tab.Navigator>
-        <Tab.Screen
+      <Stack.Group>
+        <Stack.Screen name="My Home" component={HomeScreen} />
+        <Stack.Screen
           name="myList"
           component={MyList}
-          options={{tabBarLabel: 'My List'}}
+          initialParams={{name: 'Victor'}}
         />
-        <Tab.Screen
-          name="Home"
-          component={HomeScreen}
-          options={{tabBarLabel: 'Dashboard'}}
-        />
-        <Tab.Screen
-          name="Settings"
-          component={FlexTestView}
-          options={{tabBarLabel: 'My Settings'}}
-        />
-      </Tab.Navigator>
+        <Stack.Screen name="listItemDetails" component={ListItemDetails} />
+
+        <Stack.Screen name="flexTestView" component={FlexTestView} />
+      </Stack.Group>
     );
   };
 
-  //   const getAuthStack = () => {
-  //     return (
-  //       <Stack.Group>
-  //         <Stack.Screen name="flexTestView" component={FlexTestView} />
-  //       </Stack.Group>
-  //     );
-  //   };
+  // const getTabNavigator = () => {
+  //   return (
+  //     <Tab.Navigator>
+  //       <Tab.Screen
+  //         name="myList"
+  //         component={MyList}
+  //         options={{tabBarLabel: 'My List'}}
+  //       />
+  //       <Tab.Screen
+  //         name="Home"
+  //         component={HomeScreen}
+  //         options={{tabBarLabel: 'Dashboard'}}
+  //       />
+  //       <Tab.Screen
+  //         name="Settings"
+  //         component={FlexTestView}
+  //         options={{tabBarLabel: 'My Settings'}}
+  //       />
+  //     </Tab.Navigator>
+  //   );
+  // };
 
-  return getTabNavigator();
+  const getAuthStack = () => {
+    return (
+      <Stack.Group>
+        <Stack.Screen name="flexTestView" component={FlexTestView} />
+      </Stack.Group>
+    );
+  };
+
+  // return getTabNavigator();
+
+  return <Stack.Navigator>{getHomeStack()}</Stack.Navigator>;
 };
 
 export default Navigation;
