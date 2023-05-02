@@ -6,7 +6,8 @@ import {
   ScrollView,
   TextInput,
 } from 'react-native';
-import UserDetails from '../../controls/UserDetails';
+// import UserDetails from '../../controls/UserDetails';
+import UserDetailsFunct from '../../controls/UserDetailsFunct';
 import _ from 'lodash';
 class HomeScreen extends React.Component {
   constructor(props) {
@@ -42,7 +43,7 @@ class HomeScreen extends React.Component {
     return (
       <View style={{flex: 1, backgroundColor: 'yellow'}}>
         <ScrollView>
-          <UserDetails user={user} />
+          <UserDetailsFunct user={user} />
 
           <TouchableOpacity
             style={{
