@@ -1,8 +1,6 @@
 import {View, TouchableOpacity, Text} from 'react-native';
 import {HomeScreen, MyList, ListItemDetails} from '../containers';
 
-import UserDetailsFunt from '../controls/UserDetailsFunt';
-
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
@@ -42,7 +40,6 @@ const Navigation = props => {
           <View
             style={{backgroundColor: 'green', height: 25, width: 25}}></View>
         </View>
-        <UserDetailsFunt />
 
         <TouchableOpacity
           onPress={() => {
