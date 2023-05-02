@@ -8,6 +8,21 @@ const UserDetailsFunct = props => {
   const [lastName, setlastName] = useState(props?.user?.lastName);
   const [gender, setGender] = useState(props?.user?.gender);
 
+  useEffect(() => {
+    console.log('Userdetailsfunct > componentdidmount');
+
+    return () => {
+      console.log('Userdetailsfunct > componentwillunmount');
+    };
+  }, []);
+
+  useEffect(() => {
+    console.log('Userdetailsfunct > componentdidupdate');
+    setFirstName(props?.user?.firstName);
+    setlastName(props?.user?.lastName);
+    setGender(props?.user?.gender);
+  }, [props]);
+
   const renderPersonalFields = () => {
     return (
       <>
@@ -40,6 +55,8 @@ const UserDetailsFunct = props => {
       </>
     );
   };
+
+  console.log('Userdetailsfunct > render');
 
   return <View style={{flex: 1}}>{renderPersonalFields()}</View>;
 };
