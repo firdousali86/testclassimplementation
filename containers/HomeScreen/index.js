@@ -25,38 +25,31 @@ const HomeScreen = props => {
   const [sampleTextinput, setSampleTextinput] = useState('');
   const [celciusVal, setCelciusVal] = useState(30);
 
+  const onSubmitBtnPress = () => {
+    setUser({
+      firstName: 'Firdous2',
+      lastName: 'Ali2',
+      gender: 'Male2',
+      age: '302',
+      dob: '1/1/802',
+      contactNumber: '+444444442',
+      homePhone: '+555555552',
+      education: 'MS2',
+      degree: 'CIS2',
+    });
+    setCelciusVal(90);
+  };
+
   console.log('HomeScreen > render');
 
   return (
     <View style={{flex: 1, backgroundColor: 'yellow'}}>
       <ScrollView>
-        <UserDetailsFunct user={user} celcius={celciusVal} />
-
-        <TouchableOpacity
-          style={{
-            backgroundColor: 'red',
-            height: 44,
-
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-          onPress={() => {
-            setUser({
-              firstName: 'Firdous2',
-              lastName: 'Ali2',
-              gender: 'Male2',
-              age: '302',
-              dob: '1/1/802',
-              contactNumber: '+444444442',
-              homePhone: '+555555552',
-              education: 'MS2',
-              degree: 'CIS2',
-            });
-
-            setCelciusVal(90);
-          }}>
-          <Text>Change text</Text>
-        </TouchableOpacity>
+        <UserDetailsFunct
+          user={user}
+          celcius={celciusVal}
+          onSubmitBtnPress={onSubmitBtnPress}
+        />
 
         <TextInput
           style={{

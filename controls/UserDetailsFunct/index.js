@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React, {useEffect, useState, useMemo, memo} from 'react';
-import {Text, View, TextInput} from 'react-native';
+import {Text, View, TextInput, TouchableOpacity} from 'react-native';
 import styles from './styles';
 
 const UserDetailsFunct = props => {
@@ -75,6 +75,22 @@ const UserDetailsFunct = props => {
       {renderPersonalFields()}
 
       <Text>{convertToFahrenheit}</Text>
+
+      <TouchableOpacity
+        style={{
+          backgroundColor: 'red',
+          height: 44,
+
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+        onPress={() => {
+          if (props.onSubmitBtnPress) {
+            props.onSubmitBtnPress();
+          }
+        }}>
+        <Text>Change text</Text>
+      </TouchableOpacity>
     </View>
   );
 };
