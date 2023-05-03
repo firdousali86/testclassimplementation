@@ -17,9 +17,7 @@ const HomeScreen = props => {
   const [celciusVal, setCelciusVal] = useState(30);
 
   useEffect(() => {
-    getData('firstName');
-    getData('lastName');
-    getData('gender');
+    getData('userObjectStr');
   }, []);
 
   const getData = async key => {
@@ -28,8 +26,8 @@ const HomeScreen = props => {
       if (value !== null) {
         // value previously stored
 
-        user[key] = value;
-        setUser({...user});
+        const userObjectRecovered = JSON.parse(value);
+        setUser(userObjectRecovered);
       }
     } catch (e) {
       // error reading value
@@ -56,11 +54,10 @@ const HomeScreen = props => {
 
       console.log(userObject);
 
-      const {firstName, lastName, gender} = userObject;
+      // const {firstName, lastName, gender} = userObject;
+      const userObjectStringified = JSON.stringify(userObject);
 
-      AsyncStorage.setItem('firstName', firstName);
-      AsyncStorage.setItem('lastName', lastName);
-      AsyncStorage.setItem('gender', gender);
+      AsyncStorage.setItem('userObjectStr', userObjectStringified);
     },
     [user, celciusVal],
   );
