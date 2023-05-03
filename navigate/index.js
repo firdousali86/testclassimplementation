@@ -43,9 +43,9 @@ const Navigation = props => {
 
         <TouchableOpacity
           onPress={() => {
-            props.navigation.push('flexTestView');
+            props.navigation.push('My Home');
           }}>
-          <Text>Goto flex test, PUSH</Text>
+          <Text>Goto Home, PUSH</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
@@ -84,6 +84,7 @@ const Navigation = props => {
   const getHomeStack = () => {
     return (
       <Stack.Group>
+        <Stack.Screen name="flexTestView" component={FlexTestView} />
         <Stack.Screen name="My Home" component={HomeScreen} />
         <Stack.Screen
           name="myList"
@@ -91,8 +92,6 @@ const Navigation = props => {
           initialParams={{name: 'Victor'}}
         />
         <Stack.Screen name="listItemDetails" component={ListItemDetails} />
-
-        <Stack.Screen name="flexTestView" component={FlexTestView} />
       </Stack.Group>
     );
   };
