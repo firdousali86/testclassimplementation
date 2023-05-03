@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useMemo, memo} from 'react';
 import {Text, View, TextInput} from 'react-native';
 import styles from './styles';
 
@@ -21,7 +21,19 @@ const UserDetailsFunct = props => {
     setFirstName(props?.user?.firstName);
     setlastName(props?.user?.lastName);
     setGender(props?.user?.gender);
-  }, [props]);
+  }, [props.user]);
+
+  const convertToFahrenheit = useMemo(() => {
+    console.log('UserdetailsFunt > conversion function');
+
+    return props.celcius * 1.8 + 32;
+  }, [props.celcius]);
+
+  // const convertToFahrenheit = () => {
+  //   console.log('UserdetailsFunt > conversion function');
+
+  //   return props.celcius * 1.8 + 32;
+  // };
 
   const renderPersonalFields = () => {
     return (
@@ -58,7 +70,14 @@ const UserDetailsFunct = props => {
 
   console.log('Userdetailsfunct > render');
 
-  return <View style={{flex: 1}}>{renderPersonalFields()}</View>;
+  return (
+    <View style={{flex: 1}}>
+      {renderPersonalFields()}
+
+      <Text>{convertToFahrenheit}</Text>
+    </View>
+  );
 };
 
-export default UserDetailsFunct;
+export default memo(UserDetailsFunct);
+// export default UserDetailsFunct;

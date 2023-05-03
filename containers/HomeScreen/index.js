@@ -23,11 +23,14 @@ const HomeScreen = props => {
     degree: 'CIS',
   });
   const [sampleTextinput, setSampleTextinput] = useState('');
+  const [celciusVal, setCelciusVal] = useState(30);
+
+  console.log('HomeScreen > render');
 
   return (
     <View style={{flex: 1, backgroundColor: 'yellow'}}>
       <ScrollView>
-        <UserDetailsFunct user={user} />
+        <UserDetailsFunct user={user} celcius={celciusVal} />
 
         <TouchableOpacity
           style={{
@@ -49,6 +52,8 @@ const HomeScreen = props => {
               education: 'MS2',
               degree: 'CIS2',
             });
+
+            setCelciusVal(90);
           }}>
           <Text>Change text</Text>
         </TouchableOpacity>
