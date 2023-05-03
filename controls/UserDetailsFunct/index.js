@@ -86,7 +86,7 @@ const UserDetailsFunct = props => {
         }}
         onPress={() => {
           if (props.onSubmitBtnPress) {
-            props.onSubmitBtnPress();
+            props.onSubmitBtnPress({firstName, lastName, gender});
           }
         }}>
         <Text>Change text</Text>

@@ -8,39 +8,62 @@ import {
 } from 'react-native';
 // import UserDetails from '../../controls/UserDetails';
 import UserDetailsFunct from '../../controls/UserDetailsFunct';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import _ from 'lodash';
 
 const HomeScreen = props => {
-  const [user, setUser] = useState({
-    firstName: 'Firdous',
-    lastName: 'Ali',
-    gender: 'Male',
-    age: '30',
-    dob: '1/1/80',
-    contactNumber: '+44444444',
-    homePhone: '+55555555',
-    education: 'MS',
-    degree: 'CIS',
-  });
+  const [user, setUser] = useState({});
   const [sampleTextinput, setSampleTextinput] = useState('');
   const [celciusVal, setCelciusVal] = useState(30);
 
-  const onSubmitBtnPress = useCallback(() => {
-    // setUser({
-    //   firstName: 'Firdous2',
-    //   lastName: 'Ali2',
-    //   gender: 'Male2',
-    //   age: '302',
-    //   dob: '1/1/802',
-    //   contactNumber: '+444444442',
-    //   homePhone: '+555555552',
-    //   education: 'MS2',
-    //   degree: 'CIS2',
-    // });
-    setCelciusVal(90);
+  useEffect(() => {
+    getData('firstName');
+    getData('lastName');
+    getData('gender');
+  }, []);
 
-    // set data in async storage here
-  }, [user, celciusVal]);
+  const getData = async key => {
+    try {
+      const value = await AsyncStorage.getItem(key);
+      if (value !== null) {
+        // value previously stored
+
+        user[key] = value;
+        setUser({...user});
+      }
+    } catch (e) {
+      // error reading value
+    }
+  };
+
+  const onSubmitBtnPress = useCallback(
+    userObject => {
+      // setUser({
+      //   firstName: 'Firdous2',
+      //   lastName: 'Ali2',
+      //   gender: 'Male2',
+      //   age: '302',
+      //   dob: '1/1/802',
+      //   contactNumber: '+444444442',
+      //   homePhone: '+555555552',
+      //   education: 'MS2',
+      //   degree: 'CIS2',
+      // });
+      setCelciusVal(90);
+
+      // set data in async storage here
+      // firstname, lastname, gender
+
+      console.log(userObject);
+
+      const {firstName, lastName, gender} = userObject;
+
+      AsyncStorage.setItem('firstName', firstName);
+      AsyncStorage.setItem('lastName', lastName);
+      AsyncStorage.setItem('gender', gender);
+    },
+    [user, celciusVal],
+  );
 
   // const onSubmitBtnPress = () => {
   //   setUser({
