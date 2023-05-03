@@ -1,4 +1,4 @@
-import React, {useState, useCallback} from 'react';
+import React, {useState, useCallback, useEffect} from 'react';
 import {
   View,
   TouchableOpacity,
@@ -26,18 +26,20 @@ const HomeScreen = props => {
   const [celciusVal, setCelciusVal] = useState(30);
 
   const onSubmitBtnPress = useCallback(() => {
-    setUser({
-      firstName: 'Firdous2',
-      lastName: 'Ali2',
-      gender: 'Male2',
-      age: '302',
-      dob: '1/1/802',
-      contactNumber: '+444444442',
-      homePhone: '+555555552',
-      education: 'MS2',
-      degree: 'CIS2',
-    });
+    // setUser({
+    //   firstName: 'Firdous2',
+    //   lastName: 'Ali2',
+    //   gender: 'Male2',
+    //   age: '302',
+    //   dob: '1/1/802',
+    //   contactNumber: '+444444442',
+    //   homePhone: '+555555552',
+    //   education: 'MS2',
+    //   degree: 'CIS2',
+    // });
     setCelciusVal(90);
+
+    // set data in async storage here
   }, [user, celciusVal]);
 
   // const onSubmitBtnPress = () => {
