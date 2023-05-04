@@ -1,3 +1,4 @@
+import {useEffect, useState} from 'react';
 import {View, TouchableOpacity, Text, Button} from 'react-native';
 import {
   HomeScreen,
@@ -5,16 +6,25 @@ import {
   ListItemDetails,
   PracticeContext,
 } from '../containers';
-
+import {EventRegister} from 'react-native-event-listeners';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
-const isUserLoggedIn = false;
-
 const Navigation = props => {
+  const [isUserLoggedIn, setIsUserLoggedIn] = useState(true);
+
+  useEffect(() => {
+    const listener = EventRegister.addEventListener(
+      'myFirstEmittedEvent',
+      data => {
+        console.log(data);
+      },
+    );
+  }, []);
+
   const FlexTestView = props => {
     return (
       <View
@@ -157,7 +167,11 @@ const Navigation = props => {
 
   // return getTabNavigator();
 
-  return <Stack.Navigator>{getHomeStack()}</Stack.Navigator>;
+  return (
+    <Stack.Navigator>
+      {isUserLoggedIn ? getHomeStack() : getAuthStack()}
+    </Stack.Navigator>
+  );
 };
 
 export default Navigation;

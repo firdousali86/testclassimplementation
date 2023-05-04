@@ -10,6 +10,7 @@ import {
 import UserDetailsFunct from '../../controls/UserDetailsFunct';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import _ from 'lodash';
+import {EventRegister} from 'react-native-event-listeners';
 
 const HomeScreen = props => {
   const [user, setUser] = useState({});
@@ -58,6 +59,8 @@ const HomeScreen = props => {
       const userObjectStringified = JSON.stringify(userObject);
 
       AsyncStorage.setItem('userObjectStr', userObjectStringified);
+
+      EventRegister.emit('myFirstEmittedEvent', 'this is my event data');
     },
     [user, celciusVal],
   );
