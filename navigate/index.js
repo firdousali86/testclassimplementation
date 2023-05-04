@@ -1,4 +1,4 @@
-import {View, TouchableOpacity, Text} from 'react-native';
+import {View, TouchableOpacity, Text, Button} from 'react-native';
 import {
   HomeScreen,
   MyList,
@@ -97,7 +97,23 @@ const Navigation = props => {
     return (
       <Stack.Group>
         <Stack.Screen name="flexTestView" component={FlexTestView} />
-        <Stack.Screen name="My Home" component={HomeScreen} />
+        <Stack.Screen
+          name="My Home"
+          component={HomeScreen}
+          options={{
+            headerRight: () => (
+              <Button
+                onPress={() => {
+                  alert('This is a button!');
+
+                  //logout functionality
+                }}
+                title="Log out"
+                color="red"
+              />
+            ),
+          }}
+        />
         <Stack.Screen
           name="myList"
           component={MyList}

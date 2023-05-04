@@ -1,7 +1,9 @@
 import React, {createContext, useContext} from 'react';
 import {View, Text} from 'react-native';
+import NewsList from './NewsList';
+import {ReporterContext} from '../../helpers/ContextHelper';
 
-const ReporterContext = createContext();
+// const ReporterContext = createContext();
 
 const PracticeContext = props => {
   const nameOfReporter = 'James';
@@ -22,31 +24,3 @@ const PracticeContext = props => {
 };
 
 export default PracticeContext;
-
-const NewsList = props => {
-  return (
-    <View>
-      <NewsReporter />
-      <View>
-        <Text>news1</Text>
-      </View>
-      <View>
-        <Text>news2</Text>
-      </View>
-      <View>
-        <Text>news3</Text>
-      </View>
-    </View>
-  );
-};
-
-const NewsReporter = props => {
-  const reporterInfo = useContext(ReporterContext);
-
-  return (
-    <View>
-      <Text>Name: {reporterInfo.nameOfReporter}</Text>
-      <Text>Age: {reporterInfo.ageOfReporter}</Text>
-    </View>
-  );
-};
