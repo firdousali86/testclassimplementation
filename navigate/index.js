@@ -1,5 +1,10 @@
 import {View, TouchableOpacity, Text} from 'react-native';
-import {HomeScreen, MyList, ListItemDetails} from '../containers';
+import {
+  HomeScreen,
+  MyList,
+  ListItemDetails,
+  PracticeContext,
+} from '../containers';
 
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
@@ -77,6 +82,13 @@ const Navigation = props => {
           }}>
           <Text>Jump tab</Text>
         </TouchableOpacity>
+
+        <TouchableOpacity
+          onPress={() => {
+            props.navigation.push('practiceContext');
+          }}>
+          <Text>Practice context</Text>
+        </TouchableOpacity>
       </View>
     );
   };
@@ -92,6 +104,7 @@ const Navigation = props => {
           initialParams={{name: 'Victor'}}
         />
         <Stack.Screen name="listItemDetails" component={ListItemDetails} />
+        <Stack.Screen name="practiceContext" component={PracticeContext} />
       </Stack.Group>
     );
   };
