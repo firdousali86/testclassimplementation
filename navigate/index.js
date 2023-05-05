@@ -5,6 +5,7 @@ import {
   MyList,
   ListItemDetails,
   PracticeContext,
+  TestApiList,
 } from '../containers';
 import {EventRegister} from 'react-native-event-listeners';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
@@ -99,6 +100,12 @@ const Navigation = props => {
           }}>
           <Text>Practice context</Text>
         </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            props.navigation.push('testApiList');
+          }}>
+          <Text>Test API list</Text>
+        </TouchableOpacity>
       </View>
     );
   };
@@ -131,6 +138,7 @@ const Navigation = props => {
         />
         <Stack.Screen name="listItemDetails" component={ListItemDetails} />
         <Stack.Screen name="practiceContext" component={PracticeContext} />
+        <Stack.Screen name="testApiList" component={TestApiList} />
       </Stack.Group>
     );
   };
