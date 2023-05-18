@@ -5,6 +5,7 @@ import {
   Text,
   ScrollView,
   TextInput,
+  Image,
 } from 'react-native';
 // import UserDetails from '../../controls/UserDetails';
 import UserDetailsFunct from '../../controls/UserDetailsFunct';
@@ -12,10 +13,13 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import _ from 'lodash';
 import {EventRegister} from 'react-native-event-listeners';
 
+import ImagePicker from 'react-native-image-crop-picker';
+
 const HomeScreen = props => {
   const [user, setUser] = useState({});
   const [sampleTextinput, setSampleTextinput] = useState('');
   const [celciusVal, setCelciusVal] = useState(30);
+  const [imageObject, setImageObject] = useState(undefined);
 
   useEffect(() => {
     getData('userObjectStr');
@@ -103,6 +107,19 @@ const HomeScreen = props => {
           value={sampleTextinput}
           placeholder="Some textinput on homescreen"
         />
+
+        <TouchableOpacity
+          onPress={() => {
+            ImagePicker.openPicker({
+              width: 300,
+              height: 400,
+              cropping: true,
+            }).then(image => {
+              console.log(image);
+            });
+          }}>
+          <Text>select from gallery</Text>
+        </TouchableOpacity>
       </ScrollView>
     </View>
   );
