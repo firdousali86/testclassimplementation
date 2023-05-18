@@ -107,19 +107,6 @@ const HomeScreen = props => {
           value={sampleTextinput}
           placeholder="Some textinput on homescreen"
         />
-
-        <TouchableOpacity
-          onPress={() => {
-            ImagePicker.openPicker({
-              width: 300,
-              height: 400,
-              cropping: true,
-            }).then(image => {
-              console.log(image);
-            });
-          }}>
-          <Text>select from gallery</Text>
-        </TouchableOpacity>
       </ScrollView>
     </View>
   );

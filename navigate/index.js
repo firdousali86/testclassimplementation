@@ -1,15 +1,23 @@
 import {useEffect, useState} from 'react';
-import {View, TouchableOpacity, Text, Button} from 'react-native';
+import {
+  View,
+  TouchableOpacity,
+  Text,
+  Button,
+  TouchableWithoutFeedback,
+} from 'react-native';
 import {
   HomeScreen,
   MyList,
   ListItemDetails,
   PracticeContext,
   TestApiList,
+  ImagePickerDemo,
 } from '../containers';
 import {EventRegister} from 'react-native-event-listeners';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import * as Animatable from 'react-native-animatable';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -56,35 +64,30 @@ const Navigation = props => {
           <View
             style={{backgroundColor: 'green', height: 25, width: 25}}></View>
         </View>
-
         <TouchableOpacity
           onPress={() => {
             props.navigation.push('My Home');
           }}>
           <Text>Goto Home, PUSH</Text>
         </TouchableOpacity>
-
         <TouchableOpacity
           onPress={() => {
             props.navigation.navigate('flexTestView');
           }}>
           <Text>Goto flex test, NAVIGATE</Text>
         </TouchableOpacity>
-
         <TouchableOpacity
           onPress={() => {
             props.navigation.goBack();
           }}>
           <Text>go back</Text>
         </TouchableOpacity>
-
         <TouchableOpacity
           onPress={() => {
             props.navigation.popToTop();
           }}>
           <Text>pop to top</Text>
         </TouchableOpacity>
-
         <TouchableOpacity
           onPress={() => {
             props.navigation.jumpTo('myList', {
@@ -93,7 +96,6 @@ const Navigation = props => {
           }}>
           <Text>Jump tab</Text>
         </TouchableOpacity>
-
         <TouchableOpacity
           onPress={() => {
             props.navigation.push('practiceContext');
@@ -113,8 +115,7 @@ const Navigation = props => {
   const getHomeStack = () => {
     return (
       <Stack.Group>
-        <Stack.Screen name="practiceContext" component={PracticeContext} />
-        <Stack.Screen name="flexTestView" component={FlexTestView} />
+        <Stack.Screen name="imagePickerDemo" component={ImagePickerDemo} />
         <Stack.Screen
           name="My Home"
           component={HomeScreen}
@@ -132,6 +133,8 @@ const Navigation = props => {
             ),
           }}
         />
+        <Stack.Screen name="flexTestView" component={FlexTestView} />
+        <Stack.Screen name="practiceContext" component={PracticeContext} />
         <Stack.Screen
           name="myList"
           component={MyList}
