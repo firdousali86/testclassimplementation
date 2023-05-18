@@ -31,7 +31,7 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 
 import {NavigationContainer} from '@react-navigation/native';
-
+import {ErrorBoundary} from 'react-error-boundary';
 import Navigation from './navigate';
 
 function App(): JSX.Element {
@@ -44,7 +44,17 @@ function App(): JSX.Element {
 
   return (
     <NavigationContainer>
-      <Navigation />
+      <ErrorBoundary
+        fallback={
+          <View style={{justify: 'center', alignItem: 'center', flex: 1}}>
+            <Text style={{flex: 1}}>
+              See! I know it broke, we are looking carefully into it! just
+              ignore and restart this application, hopefully it will work!
+            </Text>
+          </View>
+        }>
+        <Navigation />
+      </ErrorBoundary>
     </NavigationContainer>
   );
 }

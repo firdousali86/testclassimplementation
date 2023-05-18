@@ -113,6 +113,7 @@ const Navigation = props => {
   const getHomeStack = () => {
     return (
       <Stack.Group>
+        <Stack.Screen name="practiceContext" component={PracticeContext} />
         <Stack.Screen name="flexTestView" component={FlexTestView} />
         <Stack.Screen
           name="My Home"
@@ -137,7 +138,7 @@ const Navigation = props => {
           initialParams={{name: 'Victor'}}
         />
         <Stack.Screen name="listItemDetails" component={ListItemDetails} />
-        <Stack.Screen name="practiceContext" component={PracticeContext} />
+
         <Stack.Screen name="testApiList" component={TestApiList} />
       </Stack.Group>
     );

@@ -31,7 +31,8 @@ const TestApiList = () => {
 
   return (
     <View>
-      <Text>test flatlist</Text>
+      <Text>test flatlist {somekey.somevalue}</Text>
+
       <FlatList
         data={listData}
         renderItem={renderListItem}
